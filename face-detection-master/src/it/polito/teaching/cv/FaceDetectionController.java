@@ -19,6 +19,8 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -38,7 +40,22 @@ public class FaceDetectionController
 	// FXML buttons
 	@FXML
 	private Button cameraButton;
+	@FXML
+	private Button addButton;
 	// the FXML area for showing the current frame
+	@FXML
+	private Label lbName;
+	@FXML
+	private Label lbID;
+	@FXML
+	private Label lbClass;
+	@FXML
+	private TextField txtName;
+	@FXML
+	private TextField txtId;
+	@FXML
+	private TextField txtClass;
+	
 	@FXML
 	private ImageView originalFrame;
 	// checkboxes for enabling/disabling a classifier
@@ -84,6 +101,16 @@ public class FaceDetectionController
 			// disable setting checkboxes
 			this.haarClassifier.setDisable(true);
 			this.lbpClassifier.setDisable(true);
+			this.lbName.setDisable(false);
+			this.lbID.setDisable(false);
+			this.lbClass.setDisable(false);
+			
+			this.txtId.setDisable(false);
+			this.txtName.setDisable(false);
+			this.txtClass.setDisable(false);
+			
+			this.addButton.setDisable(false);
+			
 			
 			// start the video capture
 			this.capture.open(0);
@@ -92,6 +119,7 @@ public class FaceDetectionController
 			if (this.capture.isOpened())
 			{
 				this.cameraActive = true;
+			
 				
 				// grab a frame every 33 ms (30 frames/sec)
 				Runnable frameGrabber = new Runnable() {
@@ -111,7 +139,9 @@ public class FaceDetectionController
 				this.timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
 				
 				// update the button content
+			
 				this.cameraButton.setText("Stop Camera");
+
 			}
 			else
 			{
@@ -128,6 +158,7 @@ public class FaceDetectionController
 			// enable classifiers checkboxes
 			this.haarClassifier.setDisable(false);
 			this.lbpClassifier.setDisable(false);
+			
 			
 			// stop the timer
 			this.stopAcquisition();
@@ -247,6 +278,7 @@ public class FaceDetectionController
 		
 		// now the video capture can start
 		this.cameraButton.setDisable(false);
+	
 	}
 	
 	/**
