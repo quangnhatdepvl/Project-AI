@@ -5,18 +5,24 @@ import java.io.StringWriter;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
+import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
+import org.opencv.highgui.HighGui;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
-
+import javafx.scene.image.WritableImage;
 import it.polito.elite.teaching.cv.utils.Utils;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -59,6 +65,8 @@ public class FaceDetectionController {
 	private TextField txtId;
 	@FXML
 	private TextField txtClass;
+	@FXML
+	private TextArea txtInfor;
 
 	@FXML
 	private ImageView originalFrame;
@@ -67,6 +75,8 @@ public class FaceDetectionController {
 	private CheckBox haarClassifier;
 	@FXML
 	private CheckBox lbpClassifier;
+	@FXML
+	private ImageView saveImage;
 
 	// a timer for acquiring the video stream
 	private ScheduledExecutorService timer;
@@ -111,6 +121,8 @@ public class FaceDetectionController {
 			this.txtClass.setDisable(false);
 
 			this.addButton.setDisable(false);
+
+			this.txtInfor.setDisable(false);
 
 			// start the video capture
 			this.capture.open(0);
@@ -159,11 +171,34 @@ public class FaceDetectionController {
 
 	@FXML
 	private void addImage() {
-		
+		Mat matrix = new Mat();
+		MatOfRect faceDetections = new MatOfRect();
+		this.capture.read(matrix);
+		if (this.capture.isOpened()) {
+			if (this.capture.read(matrix)) {
+				String xmlFile = "resources/haarcascades/haarcascade_frontalface_alt.xml";
+				CascadeClassifier cc = new CascadeClassifier(xmlFile);
+				cc.detectMultiScale(matrix, faceDetections);
+				for (Rect rect : faceDetections.toArray()) {
+					Imgproc.rectangle(matrix, // where to draw the box
+							new Point(rect.x, rect.y), // bottom left
+							new Point(rect.x + rect.width, rect.y + rect.height), // top right
+							new Scalar(0, 0, 255), 3 // RGB colour
+					);
+				}
+				BufferedImage image = new BufferedImage(matrix.width(), matrix.height(), BufferedImage.TYPE_3BYTE_BGR);
+				WritableRaster raster = image.getRaster();
+				DataBufferByte dataBuffer = (DataBufferByte) raster.getDataBuffer();
+				byte[] data = dataBuffer.getData();
+				matrix.get(0, 0, data);
+				Imgcodecs.imwrite("D:\\zxc.jpg", matrix);
+				this.saveImage.setImage(Utils.mat2Image(matrix));
+			}
+		}
 
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-		alert.setHeaderText("Success");
-		alert.showAndWait();
+//		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//		alert.setHeaderText("Success");
+//		alert.showAndWait();
 	}
 
 	/**

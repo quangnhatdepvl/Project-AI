@@ -97,6 +97,7 @@
             this.imageBox1.Size = new System.Drawing.Size(163, 134);
             this.imageBox1.TabIndex = 5;
             this.imageBox1.TabStop = false;
+   
             // 
             // groupBox2
             // 

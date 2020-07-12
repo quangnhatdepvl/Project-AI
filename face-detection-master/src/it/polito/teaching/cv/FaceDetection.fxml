@@ -8,7 +8,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.CheckBox?>
 
-<BorderPane prefHeight="562.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.teaching.cv.FaceDetectionController">
+<BorderPane prefHeight="558.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.teaching.cv.FaceDetectionController">
 	<top>
 		<VBox>
 			<children>
@@ -42,7 +42,7 @@
 				<Insets left="10" right="10" />
 			</padding>
 			<children>
-				<ImageView fx:id="originalFrame" fitHeight="386.0" fitWidth="320.0" />
+				<ImageView fx:id="originalFrame" fitHeight="386.0" fitWidth="485.0" />
 			</children>
 		</VBox>
 	</left>
@@ -57,9 +57,10 @@
 				<TextField fx:id="txtClass" disable="true" />
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="saveImage" fitHeight="150.0" fitWidth="200.0" layoutX="-14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
+            <TextArea fx:id="txtInfor" disable="true" prefHeight="162.0" prefWidth="255.0" text="Information: " />
 			</children>
 		</VBox>
 	</center>
