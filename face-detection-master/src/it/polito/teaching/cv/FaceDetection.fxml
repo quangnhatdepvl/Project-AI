@@ -8,7 +8,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.CheckBox?>
 
-<BorderPane prefHeight="501.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.teaching.cv.FaceDetectionController">
+<BorderPane prefHeight="562.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.teaching.cv.FaceDetectionController">
 	<top>
 		<VBox>
 			<children>
@@ -32,7 +32,7 @@
 			</padding>
 			<children>
 				<Button fx:id="cameraButton" disable="true" onAction="#startCamera" text="Start camera" />
-				<Button fx:id="addButton" disable="true" text="Add Image" />
+				<Button fx:id="addButton" disable="true" onAction="#addImage" text="Add Image" />
 			</children>
 		</HBox>
 	</bottom>
@@ -47,7 +47,7 @@
 		</VBox>
 	</left>
 	<center>
-		<VBox fillWidth="false" prefHeight="386.0" prefWidth="244.0" BorderPane.alignment="CENTER">
+		<VBox fillWidth="false" prefHeight="389.0" prefWidth="332.0" BorderPane.alignment="CENTER">
 			<children>
 				<Label fx:id="lbName" disable="true" text="Name: " />
 				<TextField fx:id="txtName" disable="true" />
@@ -55,6 +55,11 @@
 				<TextField fx:id="txtId" disable="true" />
 				<Label fx:id="lbClass" disable="true" text="Class: " />
 				<TextField fx:id="txtClass" disable="true" />
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
 			</children>
 		</VBox>
 	</center>

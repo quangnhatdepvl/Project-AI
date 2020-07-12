@@ -20,18 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="243f1ecc-625d-4f68-a6bb-aba0266b2d63" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MultiFaceRec/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MultiFaceRec/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MultiFaceRec/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MultiFaceRec/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainForm.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MainForm.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainForm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MainForm.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainForm.resx" beforeDir="false" afterPath="$PROJECT_DIR$/MainForm.resx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/MultiFaceRec.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/MultiFaceRec.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/MultiFaceRec.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/MultiFaceRec.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/TrainedFaces/TrainedLabels.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/TrainedFaces/TrainedLabels.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.FrmPrincipal.resources" beforeDir="false" afterPath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.FrmPrincipal.resources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.csproj.GenerateResource.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.pdb" afterDir="false" />
     </list>
@@ -102,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1591771837170</updated>
       <workItem from="1591771922776" duration="8000" />
-      <workItem from="1594521818147" duration="2420000" />
+      <workItem from="1594521818147" duration="4700000" />
     </task>
     <servers />
   </component>
@@ -126,21 +121,21 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1321" height="192" key="GridCell.Tab.0.bottom" timestamp="1594523620392">
+    <state width="1321" height="192" key="GridCell.Tab.0.bottom" timestamp="1594528523199">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1321" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1594523620392" />
-    <state width="1321" height="192" key="GridCell.Tab.0.center" timestamp="1594523620391">
+    <state width="1321" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1594528523199" />
+    <state width="1321" height="192" key="GridCell.Tab.0.center" timestamp="1594528523199">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1321" height="192" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1594523620391" />
-    <state width="1321" height="192" key="GridCell.Tab.0.left" timestamp="1594523620391">
+    <state width="1321" height="192" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1594528523199" />
+    <state width="1321" height="192" key="GridCell.Tab.0.left" timestamp="1594528523199">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1321" height="192" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1594523620391" />
-    <state width="1321" height="192" key="GridCell.Tab.0.right" timestamp="1594523620391">
+    <state width="1321" height="192" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1594528523199" />
+    <state width="1321" height="192" key="GridCell.Tab.0.right" timestamp="1594528523199">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1321" height="192" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1594523620391" />
+    <state width="1321" height="192" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1594528523199" />
   </component>
 </project>
