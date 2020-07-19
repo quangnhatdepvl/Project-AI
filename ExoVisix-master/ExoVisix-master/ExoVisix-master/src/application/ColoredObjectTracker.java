@@ -1,11 +1,27 @@
 package application;
 
 
+import static org.bytedeco.javacpp.opencv_core.IPL_DEPTH_8U;
+import static org.bytedeco.javacpp.opencv_core.cvCreateImage;
+import static org.bytedeco.javacpp.opencv_core.cvFlip;
+import static org.bytedeco.javacpp.opencv_core.cvGetSize;
+import static org.bytedeco.javacpp.opencv_core.cvInRangeS;
+import static org.bytedeco.javacpp.opencv_core.cvScalar;
+import static org.bytedeco.javacpp.opencv_imgproc.CV_BGR2GRAY;
+import static org.bytedeco.javacpp.opencv_imgproc.CV_MEDIAN;
+import static org.bytedeco.javacpp.opencv_imgproc.cvCvtColor;
+import static org.bytedeco.javacpp.opencv_imgproc.cvEqualizeHist;
+import static org.bytedeco.javacpp.opencv_imgproc.cvGetCentralMoment;
+import static org.bytedeco.javacpp.opencv_imgproc.cvGetSpatialMoment;
+import static org.bytedeco.javacpp.opencv_imgproc.cvMoments;
+import static org.bytedeco.javacpp.opencv_imgproc.cvSmooth;
+
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Robot;
 import java.awt.image.BufferedImage;
+
 import javax.swing.JPanel;
 
 import org.bytedeco.javacpp.opencv_core.CvScalar;
@@ -16,13 +32,7 @@ import org.bytedeco.javacv.FrameGrabber;
 import org.bytedeco.javacv.Java2DFrameConverter;
 import org.bytedeco.javacv.OpenCVFrameConverter;
 
-import static org.bytedeco.javacpp.opencv_core.*;
-import static org.bytedeco.javacpp.opencv_imgcodecs.*;
-import static org.bytedeco.javacpp.opencv_imgproc.*;
-
 public class ColoredObjectTracker implements Runnable {
-
-
 	final int INTERVAL = 1;// 1sec
 	final int CAMERA_NUM = 0; // Default camera for this time
 	FrameGrabber grabber;

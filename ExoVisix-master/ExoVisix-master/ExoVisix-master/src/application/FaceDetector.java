@@ -56,7 +56,6 @@ public class FaceDetector implements Runnable {
 	ArrayList<String> user;
 
 	FaceRecognizer faceRecognizer = new FaceRecognizer();
-	MotionDetector motionDetector = new MotionDetector();
 	OpenCVFrameConverter.ToIplImage grabberConverter = new OpenCVFrameConverter.ToIplImage();
 	Java2DFrameConverter paintConverter = new Java2DFrameConverter();
 	ArrayList<String> output = new ArrayList<String>();
@@ -64,12 +63,11 @@ public class FaceDetector implements Runnable {
 	@FXML
 	public Label ll;
 	private Exception exception = null;
-	
+
 	private int count = 0;
 	public String classiferName;
 	public File classifierFile;
-	
-	
+
 	public boolean saveFace = false;
 	public boolean isRecFace = false;
 	public boolean isOutput = false;
@@ -84,30 +82,24 @@ public class FaceDetector implements Runnable {
 	private CvHaarClassifierCascade classifier = null;
 	private CvHaarClassifierCascade classifierSideFace = null;
 
-	
-	
 	public CvMemStorage storage = null;
 	private FrameGrabber grabber = null;
 	private IplImage grabbedImage = null, temp, temp2, grayImage = null, smallImage = null;
 	public ImageView frames2;
 	public ImageView frames;
-	
-	
+
 	private CvSeq faces = null;
 	private CvSeq eyes = null;
-	
 
-	
-	
 	int recogniseCode;
 	public int code;
 	public int reg;
 	public int age;
-	
-	public String fname; //first name
-	public String Lname; //last name
-	public String sec; //section
-	public String name; 
+
+	public String fname; // first name
+	public String Lname; // last name
+	public String sec; // section
+	public String name;
 
 	public void init() {
 		faceRecognizer.init();
@@ -136,7 +128,7 @@ public class FaceDetector implements Runnable {
 	public void run() {
 		try {
 			try {
-				grabber = OpenCVFrameGrabber.createDefault(0); //parameter 0 default camera , 1 for secondary
+				grabber = OpenCVFrameGrabber.createDefault(0); // parameter 0 default camera , 1 for secondary
 
 				grabber.setImageWidth(700);
 				grabber.setImageHeight(700);
@@ -156,10 +148,10 @@ public class FaceDetector implements Runnable {
 
 			}
 			int count = 15;
-			grayImage = cvCreateImage(cvGetSize(grabbedImage), 8, 1); //converting image to grayscale
-			
-			//reducing the size of the image to speed up the processing
-			smallImage = cvCreateImage(cvSize(grabbedImage.width() / 4, grabbedImage.height() / 4), 8, 1); 
+			grayImage = cvCreateImage(cvGetSize(grabbedImage), 8, 1); // converting image to grayscale
+
+			// reducing the size of the image to speed up the processing
+			smallImage = cvCreateImage(cvSize(grabbedImage.width() / 4, grabbedImage.height() / 4), 8, 1);
 
 			stop = false;
 
@@ -171,26 +163,22 @@ public class FaceDetector implements Runnable {
 
 				if (faces == null) {
 					cvClearMemStorage(storage);
-					
-					//creating a temporary image
+
+					// creating a temporary image
 					temp = cvCreateImage(cvGetSize(grabbedImage), grabbedImage.depth(), grabbedImage.nChannels());
 
 					cvCopy(grabbedImage, temp);
 
 					cvCvtColor(grabbedImage, grayImage, CV_BGR2GRAY);
 					cvResize(grayImage, smallImage, CV_INTER_AREA);
-					
-					//cvHaarDetectObjects(image, cascade, storage, scale_factor, min_neighbors, flags, min_size, max_size)
+
+					// cvHaarDetectObjects(image, cascade, storage, scale_factor, min_neighbors,
+					// flags, min_size, max_size)
 					faces = cvHaarDetectObjects(smallImage, classifier, storage, 1.1, 3, CV_HAAR_DO_CANNY_PRUNING);
-					//face detection
-					
+					// face detection
+
 					CvPoint org = null;
 					if (grabbedImage != null) {
-
-					
-						
-						
-						
 
 						if (isOcrMode) {
 							try {
@@ -198,7 +186,7 @@ public class FaceDetector implements Runnable {
 								OutputStream os = new FileOutputStream("captures.png");
 								ImageIO.write(image, "PNG", os);
 							} catch (IOException e) {
-								
+
 								e.printStackTrace();
 							}
 						}
@@ -217,8 +205,8 @@ public class FaceDetector implements Runnable {
 							int total = faces.total();
 
 							for (int i = 0; i < total; i++) {
-								
-								//printing rectange box where face detected frame by frame
+
+								// printing rectange box where face detected frame by frame
 								CvRect r = new CvRect(cvGetSeqElem(faces, i));
 								g2.drawRect((r.x() * 4), (r.y() * 4), (r.width() * 4), (r.height() * 4));
 
@@ -231,13 +219,12 @@ public class FaceDetector implements Runnable {
 								org = new CvPoint(r.x(), r.y());
 
 								if (isRecFace) {
-									String names="Unknown Person!";
+									String names = "Unknown Person!";
 									this.recogniseCode = faceRecognizer.recognize(temp);
 
-									//getting recognised user from the database
-									
-									if(recogniseCode != -1)
-									{
+									// getting recognised user from the database
+
+									if (recogniseCode != -1) {
 										database.init();
 										user = new ArrayList<String>();
 										user = database.getUser(this.recogniseCode);
@@ -245,17 +232,17 @@ public class FaceDetector implements Runnable {
 
 										names = user.get(1) + " " + user.get(2);
 									}
-								
-									//printing recognised person name into the frame
+
+									// printing recognised person name into the frame
 									g2.setColor(Color.WHITE);
 									g2.setFont(new Font("Arial Black", Font.BOLD, 20));
-									
+
 									g2.drawString(names, (int) (r.x() * 6.5), r.y() * 4);
 
 								}
 
-								if (saveFace) { //saving captured face to the disk
-									//keep it in mind that face code should be unique to each person
+								if (saveFace) { // saving captured face to the disk
+									// keep it in mind that face code should be unique to each person
 									String fName = "faces/" + code + "-" + fname + "_" + Lname + "_" + count + ".jpg";
 									cvSaveImage(fName, temp);
 									count++;
@@ -269,31 +256,13 @@ public class FaceDetector implements Runnable {
 
 						WritableImage showFrame = SwingFXUtils.toFXImage(image, null);
 
-						javafx.application.Platform.runLater(new Runnable(){
-							
+						javafx.application.Platform.runLater(new Runnable() {
+
 							@Override
-							 public void run() {
-							frames.setImage(showFrame);
-							 }
-							 });
-
-						if (isMotion) {
-							new Thread(() -> {
-
-								try {
-
-									motionDetector.init(grabbedImage, g2);
-
-								} catch (InterruptedException ex) {
-								} catch (Exception e) {
-									
-									e.printStackTrace();
-								}
-
-							}).start();
-
-						}
-						isMotion = false;
+							public void run() {
+								frames.setImage(showFrame);
+							}
+						});
 
 					}
 					cvReleaseImage(temp);
@@ -316,13 +285,13 @@ public class FaceDetector implements Runnable {
 		try {
 			grabber.stop();
 		} catch (org.bytedeco.javacv.FrameGrabber.Exception e) {
-			
+
 			e.printStackTrace();
 		}
 		try {
 			grabber.release();
 		} catch (org.bytedeco.javacv.FrameGrabber.Exception e) {
-		
+
 			e.printStackTrace();
 		}
 		grabber = null;
@@ -355,7 +324,6 @@ public class FaceDetector implements Runnable {
 		}
 
 	}
-
 
 	public void printResult(CvSeq data, int total, Graphics2D g2) {
 		for (int j = 0; j < total; j++) {
@@ -394,8 +362,6 @@ public class FaceDetector implements Runnable {
 
 	}
 
-	
-	
 	public String getClassiferName() {
 		return classiferName;
 	}
@@ -436,7 +402,6 @@ public class FaceDetector implements Runnable {
 	public void setOcrMode(boolean isOcrMode) {
 		this.isOcrMode = isOcrMode;
 	}
-
 
 	public boolean isMotion() {
 		return isMotion;
@@ -529,6 +494,5 @@ public class FaceDetector implements Runnable {
 	public void setIsRecFace(Boolean isRecFace) {
 		this.isRecFace = isRecFace;
 	}
-
 
 }
