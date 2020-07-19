@@ -387,15 +387,6 @@ public class SampleController {
 		isDBready=false;
 	}
 
-	
-
-	@FXML
-	protected void capture() {
-
-		faceDetect.setOcrMode(true);
-
-	}
-
 	@FXML
 	protected void startGesture() {
 
@@ -409,7 +400,6 @@ public class SampleController {
 		gestureStop.setVisible(true);
 
 	}
-
 
 	@FXML
 	protected void stopGesture() {
