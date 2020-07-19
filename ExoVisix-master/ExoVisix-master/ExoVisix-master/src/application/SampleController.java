@@ -39,16 +39,8 @@ public class SampleController {
 	@FXML
 	private Button stopBtn;
 
-	
-	
-	
-	@FXML
-	private Button gesture;
-	@FXML
-	private Button gestureStop;
 	@FXML
 	private Button saveBtn;
-
 
 	@FXML
 	private Button recogniseBtn;
@@ -142,7 +134,6 @@ public class SampleController {
 		startCam.setVisible(false);
 
 		stopBtn.setVisible(true);
-		gesture.setDisable(false);
 		saveBtn.setDisable(false);
 
 		if (isDBready) {
@@ -325,10 +316,6 @@ public class SampleController {
 							pb.setProgress(100);
 						 }
 						 });
-
-
-					
-
 					savedLabel.setVisible(true);
 					Thread.sleep(2000);
 					
@@ -339,13 +326,6 @@ public class SampleController {
 							pb.setVisible(false);
 						 }
 						 });
-
-				
-					
-					
-
-					
-					
 					javafx.application.Platform.runLater(new Runnable(){
 						
 						@Override
@@ -386,23 +366,6 @@ public class SampleController {
 		isDBready=false;
 	}
 
-	@FXML
-	protected void startGesture() {
-		faceDetect.stop();
-		gesture.setVisible(false);
-		gestureStop.setVisible(true);
-
-	}
-
-	@FXML
-	protected void stopGesture() {
-
-		faceDetect.start();
-
-		gesture.setVisible(true);
-		gestureStop.setVisible(false);
-
-	}
 
 	
 	private ImageView createImageView(final File imageFile) {

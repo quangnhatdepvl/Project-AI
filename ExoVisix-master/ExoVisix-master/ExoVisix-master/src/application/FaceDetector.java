@@ -103,15 +103,8 @@ public class FaceDetector implements Runnable {
 
 	public void init() {
 		faceRecognizer.init();
-
 		setClassifier("haar/haarcascade_frontalface_alt.xml");
-//		setClassifierEye("haar/haarcascade_eye.xml");
-//		setClassifierEyeGlass("haar/haarcascade_eye_tree_eyeglasses.xml");
 		setClassifierSideFace("haar/haarcascade_profileface.xml");
-//		setClassifierFullBody("haar/haarcascade_fullbody.xml");
-//		setClassifierUpperBody("haar/haarcascade_upperbody.xml");
-//		setClassifierSmile("haar/haarcascade_smile.xml");
-
 	}
 
 	public void start() {
