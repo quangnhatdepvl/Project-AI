@@ -1,60 +1,60 @@
--- phpMyAdmin SQL Dump
--- version 4.2.11
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Nov 09, 2017 at 05:34 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+/*
+ Navicat Premium Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 100406
+ Source Host           : localhost:3306
+ Source Schema         : ghosteye
 
+ Target Server Type    : MySQL
+ Target Server Version : 100406
+ File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+ Date: 19/07/2020 15:55:13
+*/
 
---
--- Database: `ghostEye`
---
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `face_bio`
---
-
-CREATE TABLE IF NOT EXISTS `face_bio` (
-`id` int(11) NOT NULL,
+-- ----------------------------
+-- Table structure for face_bio
+-- ----------------------------
+DROP TABLE IF EXISTS `face_bio`;
+CREATE TABLE `face_bio`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` int(10) NOT NULL,
-  `first_name` varchar(30) NOT NULL,
-  `last_name` varchar(20) NOT NULL,
+  `first_name` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `last_name` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `reg` int(10) NOT NULL,
   `age` int(10) NOT NULL,
-  `section` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+  `section` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 67 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
---
--- Indexes for dumped tables
---
+-- ----------------------------
+-- Records of face_bio
+-- ----------------------------
+INSERT INTO `face_bio` VALUES (46, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (47, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (48, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (49, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (50, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (51, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (52, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (53, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (54, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (55, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (56, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (57, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (58, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (59, 1, 'quang', 'nhat', 12, 12, '12');
+INSERT INTO `face_bio` VALUES (60, 2, 'Thanh', 'Nghi', 13, 13, '13');
+INSERT INTO `face_bio` VALUES (61, 2, 'Thanh', 'Nghi', 13, 13, '13');
+INSERT INTO `face_bio` VALUES (62, 2, 'Thanh', 'Nghi', 13, 13, '13');
+INSERT INTO `face_bio` VALUES (63, 2, 'Thanh', 'Nghi', 13, 13, '13');
+INSERT INTO `face_bio` VALUES (64, 2, 'Thanh', 'Nghi', 13, 13, '13');
+INSERT INTO `face_bio` VALUES (65, 2, 'Thanh', 'Nghi', 13, 13, '13');
+INSERT INTO `face_bio` VALUES (66, 2, 'Thanh', 'Nghi', 13, 13, '13');
 
---
--- Indexes for table `face_bio`
---
-ALTER TABLE `face_bio`
- ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `face_bio`
---
-ALTER TABLE `face_bio`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET FOREIGN_KEY_CHECKS = 1;
