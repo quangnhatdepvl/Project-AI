@@ -147,7 +147,7 @@ public class FaceDetector implements Runnable {
 				grabbedImage = grabberConverter.convert(grabber.grab());
 
 			}
-			int count = 15;
+			int count = 1;
 			grayImage = cvCreateImage(cvGetSize(grabbedImage), 8, 1); // converting image to grayscale
 
 			// reducing the size of the image to speed up the processing

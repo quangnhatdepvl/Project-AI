@@ -92,7 +92,6 @@ public class SampleController {
 	public TextFlow ocr;
 //**********************************************************************************************
 	FaceDetector faceDetect = new FaceDetector();	//Creating Face detector object									
-	ColoredObjectTracker cot = new ColoredObjectTracker(); //Creating Color Object Tracker object		
 	Database database = new Database();		//Creating Database object
 
 	ArrayList<String> user = new ArrayList<String>();
@@ -389,13 +388,7 @@ public class SampleController {
 
 	@FXML
 	protected void startGesture() {
-
 		faceDetect.stop();
-		cot.init();
-
-		Thread th = new Thread(cot);
-		th.start();
-
 		gesture.setVisible(false);
 		gestureStop.setVisible(true);
 
@@ -404,7 +397,6 @@ public class SampleController {
 	@FXML
 	protected void stopGesture() {
 
-		cot.stop();
 		faceDetect.start();
 
 		gesture.setVisible(true);
