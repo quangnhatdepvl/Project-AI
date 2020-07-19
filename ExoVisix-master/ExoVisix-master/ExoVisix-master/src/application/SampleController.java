@@ -95,7 +95,6 @@ public class SampleController {
 	ColoredObjectTracker cot = new ColoredObjectTracker(); //Creating Color Object Tracker object		
 	Database database = new Database();		//Creating Database object
 
-	OCR ocrObj = new OCR();
 	ArrayList<String> user = new ArrayList<String>();
 	ImageView imageView1;
 	
@@ -391,23 +390,7 @@ public class SampleController {
 		isDBready=false;
 	}
 
-	@FXML
-	protected void ocrStart() {
-
-		try {
-
-			Text text1 = new Text(ocrObj.init());
-
-			text1.setStyle("-fx-font-size: 14; -fx-fill: blue;");
-
-			ocr.getChildren().add(text1);
-
-		} catch (FontFormatException e) {
-
-			e.printStackTrace();
-		}
-
-	}
+	
 
 	@FXML
 	protected void capture() {
