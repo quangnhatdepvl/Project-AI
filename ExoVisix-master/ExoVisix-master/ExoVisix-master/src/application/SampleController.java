@@ -381,10 +381,7 @@ public class SampleController {
 		recogniseBtn.setDisable(true);
 		saveBtn.setDisable(true);
 		dataPane.setDisable(true);
-		stopRecBtn.setDisable(true);
-		
-		
-		
+		stopRecBtn.setDisable(true);		
 		database.db_close();
 		putOnLog("Database Connection Closed");
 		isDBready=false;
@@ -414,16 +411,6 @@ public class SampleController {
 	}
 
 
-
-
-
-	@FXML
-	protected void smileStart() {
-
-		faceDetect.setSmile(true);
-
-	}
-
 	@FXML
 	protected void stopGesture() {
 
@@ -435,16 +422,7 @@ public class SampleController {
 
 	}
 
-	@FXML
-	protected void shapeStart() {
-
-		// faceDetect.stop();
-
-		SquareDetector shapeFrame = new SquareDetector();
-		shapeFrame.loop();
-
-	}
-
+	
 	private ImageView createImageView(final File imageFile) {
 
 		try {
