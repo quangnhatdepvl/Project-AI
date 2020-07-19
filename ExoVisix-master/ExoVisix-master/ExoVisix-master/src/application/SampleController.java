@@ -292,22 +292,23 @@ public class SampleController {
 				try {
 
 					faceDetect.setFname(fname.getText());
-
 					faceDetect.setFname(fname.getText());
 					faceDetect.setLname(lname.getText());
 					faceDetect.setAge(Integer.parseInt(age.getText()));
 					faceDetect.setCode(Integer.parseInt(code.getText()));
 					faceDetect.setSec(sec.getText());
 					faceDetect.setReg(Integer.parseInt(reg.getText()));
-
+					
 					database.setFname(fname.getText());
 					database.setLname(lname.getText());
 					database.setAge(Integer.parseInt(age.getText()));
 					database.setCode(Integer.parseInt(code.getText()));
 					database.setSec(sec.getText());
 					database.setReg(Integer.parseInt(reg.getText()));
-
-					database.insert();
+					
+					if(database.getCode(Integer.parseInt(code.getText())) == 0) {
+						database.insert();
+					}
 					
 					javafx.application.Platform.runLater(new Runnable(){
 						

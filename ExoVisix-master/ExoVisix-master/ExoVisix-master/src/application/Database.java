@@ -76,6 +76,27 @@ class Database {
 
 	}
 
+	public int getCode(int code) {
+		int result = 0;
+		try {
+
+
+			String sql = "select * from face_bio where code=" + code ;
+
+			Statement s = con.createStatement();
+
+			ResultSet rs = s.executeQuery(sql);
+
+			if (rs.next()) {
+				result = rs.getInt("id");
+			}
+
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return result;
+	}
+
 	public ArrayList<String> getUser(int inCode) throws SQLException {
 
 		ArrayList<String> user = new ArrayList<String>();
@@ -106,12 +127,9 @@ class Database {
 				user.add(5, rs.getString(7));
 
 				/*
-				 * System.out.println(app.getCode());
-				 * System.out.println(app.getFname());
-				 * System.out.println(app.getLname());
-				 * System.out.println(app.getReg());
-				 * System.out.println(app.getAge());
-				 * System.out.println(app.getSec());
+				 * System.out.println(app.getCode()); System.out.println(app.getFname());
+				 * System.out.println(app.getLname()); System.out.println(app.getReg());
+				 * System.out.println(app.getAge()); System.out.println(app.getSec());
 				 */
 
 				// nString="Name:" + rs.getString(3)+" "+rs.getString(4) +
@@ -128,8 +146,7 @@ class Database {
 		return user;
 	}
 
-	public void db_close() throws SQLException
-	{
+	public void db_close() throws SQLException {
 		try {
 			con.close();
 		} catch (SQLException e) {
@@ -137,8 +154,7 @@ class Database {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public int getCode() {
 		return code;
 	}
