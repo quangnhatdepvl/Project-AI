@@ -23,8 +23,12 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import org.bytedeco.javacpp.Loader;
 import org.bytedeco.javacpp.opencv_core.CvMemStorage;
@@ -61,6 +65,7 @@ public class FaceDetector implements Runnable {
 	public Label ll;
 	private Exception exception = null;
 	
+	private int count = 0;
 	public String classiferName;
 	public File classifierFile;
 	
@@ -77,24 +82,23 @@ public class FaceDetector implements Runnable {
 	private boolean stop = false;
 
 	private CvHaarClassifierCascade classifier = null;
-
 	private CvHaarClassifierCascade classifierSideFace = null;
 
 	
 	
 	public CvMemStorage storage = null;
 	private FrameGrabber grabber = null;
-	private IplImage grabbedImage = null, temp,  grayImage = null, smallImage = null;
+	private IplImage grabbedImage = null, temp, temp2, grayImage = null, smallImage = null;
 	public ImageView frames2;
 	public ImageView frames;
 	
 	
 	private CvSeq faces = null;
 	private CvSeq eyes = null;
-
-
 	
 
+	
+	
 	int recogniseCode;
 	public int code;
 	public int reg;
@@ -109,7 +113,12 @@ public class FaceDetector implements Runnable {
 		faceRecognizer.init();
 
 		setClassifier("haar/haarcascade_frontalface_alt.xml");
-
+//		setClassifierEye("haar/haarcascade_eye.xml");
+//		setClassifierEyeGlass("haar/haarcascade_eye_tree_eyeglasses.xml");
+		setClassifierSideFace("haar/haarcascade_profileface.xml");
+//		setClassifierFullBody("haar/haarcascade_fullbody.xml");
+//		setClassifierUpperBody("haar/haarcascade_upperbody.xml");
+//		setClassifierSmile("haar/haarcascade_smile.xml");
 
 	}
 
@@ -177,6 +186,24 @@ public class FaceDetector implements Runnable {
 					
 					CvPoint org = null;
 					if (grabbedImage != null) {
+
+					
+						
+						
+						
+
+						if (isOcrMode) {
+							try {
+
+								OutputStream os = new FileOutputStream("captures.png");
+								ImageIO.write(image, "PNG", os);
+							} catch (IOException e) {
+								
+								e.printStackTrace();
+							}
+						}
+
+						isOcrMode = false;
 
 						if (faces.total() == 0) {
 							faces = cvHaarDetectObjects(smallImage, classifierSideFace, storage, 1.1, 3,
@@ -329,8 +356,7 @@ public class FaceDetector implements Runnable {
 
 	}
 
-	
-	
+
 	public void printResult(CvSeq data, int total, Graphics2D g2) {
 		for (int j = 0; j < total; j++) {
 			CvRect eye = new CvRect(cvGetSeqElem(eyes, j));
@@ -340,6 +366,35 @@ public class FaceDetector implements Runnable {
 		}
 	}
 
+	public void setClassifierSideFace(String name) {
+
+		try {
+
+			classiferName = name;
+			classifierFile = Loader.extractResource(classiferName, null, "classifier", ".xml");
+
+			if (classifierFile == null || classifierFile.length() <= 0) {
+				throw new IOException("Could not extract \"" + classiferName + "\" from Java resources.");
+			}
+
+			// Preload the opencv_objdetect module to work around a known bug.
+			Loader.load(opencv_objdetect.class);
+			classifierSideFace = new CvHaarClassifierCascade(cvLoad(classifierFile.getAbsolutePath()));
+			classifierFile.delete();
+			if (classifier.isNull()) {
+				throw new IOException("Could not load the classifier file.");
+			}
+
+		} catch (Exception e) {
+			if (exception == null) {
+				exception = e;
+
+			}
+		}
+
+	}
+
+	
 	
 	public String getClassiferName() {
 		return classiferName;
@@ -382,8 +437,6 @@ public class FaceDetector implements Runnable {
 		this.isOcrMode = isOcrMode;
 	}
 
-	public void destroy() {
-	}
 
 	public boolean isMotion() {
 		return isMotion;
