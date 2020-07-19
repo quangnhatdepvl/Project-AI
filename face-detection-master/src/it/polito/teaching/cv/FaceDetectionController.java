@@ -65,8 +65,8 @@ public class FaceDetectionController {
 	private TextField txtId;
 	@FXML
 	private TextField txtClass;
-	@FXML
-	private TextArea txtInfor;
+
+
 
 	@FXML
 	private ImageView originalFrame;
@@ -122,8 +122,7 @@ public class FaceDetectionController {
 
 			this.addButton.setDisable(false);
 
-			this.txtInfor.setDisable(false);
-
+			
 			// start the video capture
 			this.capture.open(0);
 

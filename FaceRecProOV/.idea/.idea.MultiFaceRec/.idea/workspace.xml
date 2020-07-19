@@ -19,17 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="243f1ecc-625d-4f68-a6bb-aba0266b2d63" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MultiFaceRec/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MultiFaceRec/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EigenObjectRecognizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EigenObjectRecognizer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainForm.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MainForm.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/MultiFaceRec.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/MultiFaceRec.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/MultiFaceRec.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/MultiFaceRec.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/TrainedFaces/TrainedLabels.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/TrainedFaces/TrainedLabels.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/x86/Debug/MultiFaceRec.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../face-detection-master/src/it/polito/teaching/cv/FaceDetectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../face-detection-master/src/it/polito/teaching/cv/FaceDetectionController.java" afterDir="false" />
-    </list>
+    <list default="true" id="243f1ecc-625d-4f68-a6bb-aba0266b2d63" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,6 +89,7 @@
       <updated>1591771837170</updated>
       <workItem from="1591771922776" duration="8000" />
       <workItem from="1594521818147" duration="8268000" />
+      <workItem from="1595128838824" duration="13000" />
     </task>
     <servers />
   </component>
@@ -117,6 +108,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

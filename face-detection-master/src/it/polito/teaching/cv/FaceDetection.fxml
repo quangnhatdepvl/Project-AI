@@ -55,12 +55,7 @@
 				<TextField fx:id="txtId" disable="true" />
 				<Label fx:id="lbClass" disable="true" text="Class: " />
 				<TextField fx:id="txtClass" disable="true" />
-            <Pane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="saveImage" fitHeight="150.0" fitWidth="200.0" layoutX="-14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </Pane>
-            <TextArea fx:id="txtInfor" disable="true" prefHeight="162.0" prefWidth="255.0" text="Information: " />
+            <ImageView fx:id="saveImage" fitHeight="233.0" fitWidth="252.0" pickOnBounds="true" preserveRatio="true" />
 			</children>
 		</VBox>
 	</center>
