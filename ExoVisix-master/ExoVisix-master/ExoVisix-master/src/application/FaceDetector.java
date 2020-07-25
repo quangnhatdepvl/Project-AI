@@ -93,12 +93,9 @@ public class FaceDetector implements Runnable {
 
 	int recogniseCode;
 	public int code;
-	public int reg;
-	public int age;
 
-	public String fname; // first name
-	public String Lname; // last name
-	public String sec; // section
+	public String fullName; // first name
+	public String className; // last name
 	public String name;
 
 	public void init() {
@@ -236,7 +233,7 @@ public class FaceDetector implements Runnable {
 
 								if (saveFace) { // saving captured face to the disk
 									// keep it in mind that face code should be unique to each person
-									String fName = "faces/" + code + "-" + fname + "_" + Lname + "_" + count + ".jpg";
+									String fName = "faces/" + code + "-" + fullName + "_" + count + ".jpg";
 									cvSaveImage(fName, temp);
 									count++;
 
@@ -432,44 +429,20 @@ public class FaceDetector implements Runnable {
 		this.code = code;
 	}
 
-	public String getFname() {
-		return fname;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
-	public String getLname() {
-		return Lname;
+	public String getClassName() {
+		return className;
 	}
 
-	public void setLname(String lname) {
-		Lname = lname;
-	}
-
-	public int getReg() {
-		return reg;
-	}
-
-	public void setReg(int reg) {
-		this.reg = reg;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getSec() {
-		return sec;
-	}
-
-	public void setSec(String sec) {
-		this.sec = sec;
+	public void setClassName(String className) {
+		this.className = className;
 	}
 
 	public void setFrame(ImageView frame) {

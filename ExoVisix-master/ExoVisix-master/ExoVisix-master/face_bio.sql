@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 100406
+ Source Server Version : 100413
  Source Host           : localhost:3306
  Source Schema         : ghosteye
 
  Target Server Type    : MySQL
- Target Server Version : 100406
+ Target Server Version : 100413
  File Encoding         : 65001
 
- Date: 19/07/2020 15:55:13
+ Date: 25/07/2020 15:16:01
 */
 
 SET NAMES utf8mb4;
@@ -24,37 +24,29 @@ DROP TABLE IF EXISTS `face_bio`;
 CREATE TABLE `face_bio`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` int(10) NOT NULL,
-  `first_name` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `last_name` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `reg` int(10) NOT NULL,
-  `age` int(10) NOT NULL,
-  `section` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 67 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+  `fullName` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `className` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `monHoc` int(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fkMonHoc_id`(`monHoc`) USING BTREE,
+  CONSTRAINT `fkMonHoc_id` FOREIGN KEY (`monHoc`) REFERENCES `face_monhoc` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of face_bio
+-- Table structure for face_monhoc
 -- ----------------------------
-INSERT INTO `face_bio` VALUES (46, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (47, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (48, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (49, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (50, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (51, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (52, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (53, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (54, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (55, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (56, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (57, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (58, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (59, 1, 'quang', 'nhat', 12, 12, '12');
-INSERT INTO `face_bio` VALUES (60, 2, 'Thanh', 'Nghi', 13, 13, '13');
-INSERT INTO `face_bio` VALUES (61, 2, 'Thanh', 'Nghi', 13, 13, '13');
-INSERT INTO `face_bio` VALUES (62, 2, 'Thanh', 'Nghi', 13, 13, '13');
-INSERT INTO `face_bio` VALUES (63, 2, 'Thanh', 'Nghi', 13, 13, '13');
-INSERT INTO `face_bio` VALUES (64, 2, 'Thanh', 'Nghi', 13, 13, '13');
-INSERT INTO `face_bio` VALUES (65, 2, 'Thanh', 'Nghi', 13, 13, '13');
-INSERT INTO `face_bio` VALUES (66, 2, 'Thanh', 'Nghi', 13, 13, '13');
+DROP TABLE IF EXISTS `face_monhoc`;
+CREATE TABLE `face_monhoc`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tenMonHoc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `giaoVien` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of face_monhoc
+-- ----------------------------
+INSERT INTO `face_monhoc` VALUES (1, 'CNPM', 'Thay Phuoc');
+INSERT INTO `face_monhoc` VALUES (2, 'AI', 'Thay Du');
 
 SET FOREIGN_KEY_CHECKS = 1;

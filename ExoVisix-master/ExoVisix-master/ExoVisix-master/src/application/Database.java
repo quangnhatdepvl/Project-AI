@@ -1,17 +1,19 @@
 package application;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 class Database {
 	public int code;
 
-	public String fname;
-	public String Lname;
-	public int reg;
-	public int age;
-	public String sec;
+	public String fullName;
+	public String className;
+	public int idMonHoc;
 
 	public final String Database_name = "ghosteye";
 	public final String Database_user = "root";
@@ -45,7 +47,7 @@ class Database {
 	}
 
 	public void insert() {
-		String sql = "INSERT INTO face_bio (code, first_name, last_name, reg, age , section) VALUES (?, ?, ?, ?,?,?)";
+		String sql = "INSERT INTO face_bio (id,code,fullName,className,monHoc) VALUES (?, ?, ?, ?,?)";
 
 		PreparedStatement statement = null;
 		try {
@@ -56,14 +58,12 @@ class Database {
 		}
 
 		try {
+			statement.setInt(1, 0);
+			statement.setInt(2, this.code);
+			statement.setString(3, this.fullName);
 
-			statement.setInt(1, this.code);
-			statement.setString(2, this.fname);
-
-			statement.setString(3, this.Lname);
-			statement.setInt(4, this.reg);
-			statement.setInt(5, this.age);
-			statement.setString(6, this.sec);
+			statement.setString(4, this.className);
+			statement.setInt(5, 2);
 
 			int rowsInserted = statement.executeUpdate();
 			if (rowsInserted > 0) {
@@ -80,8 +80,7 @@ class Database {
 		int result = 0;
 		try {
 
-
-			String sql = "select * from face_bio where code=" + code ;
+			String sql = "select * from face_bio where code=" + code;
 
 			Statement s = con.createStatement();
 
@@ -123,8 +122,6 @@ class Database {
 				user.add(1, rs.getString(3));
 				user.add(2, rs.getString(4));
 				user.add(3, Integer.toString(rs.getInt(5)));
-				user.add(4, Integer.toString(rs.getInt(6)));
-				user.add(5, rs.getString(7));
 
 				/*
 				 * System.out.println(app.getCode()); System.out.println(app.getFname());
@@ -163,44 +160,28 @@ class Database {
 		this.code = code;
 	}
 
-	public String getFname() {
-		return fname;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
-	public String getLname() {
-		return Lname;
+	public String getClassName() {
+		return className;
 	}
 
-	public void setLname(String lname) {
-		Lname = lname;
+	public void setClassName(String className) {
+		this.className = className;
 	}
 
-	public int getReg() {
-		return reg;
+	public int getIdMonHoc() {
+		return idMonHoc;
 	}
 
-	public void setReg(int reg) {
-		this.reg = reg;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getSec() {
-		return sec;
-	}
-
-	public void setSec(String sec) {
-		this.sec = sec;
+	public void setIdMonHoc(int idMonHoc) {
+		this.idMonHoc = idMonHoc;
 	}
 
 }
