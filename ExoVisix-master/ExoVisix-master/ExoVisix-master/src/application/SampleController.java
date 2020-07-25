@@ -1,8 +1,11 @@
 package application;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.Instant;
 import java.time.LocalTime;
@@ -97,13 +100,13 @@ public class SampleController {
 	// **********************************************************************************************
 	public void putOnLog(String data) {
 
-		Instant now = Instant.now();
+//		Instant now = Instant.now();
+//
+//		String logs = now.toString() + ":\n" + data;
+//
+//		event.add(logs);
 
-		String logs = now.toString() + ":\n" + data;
-
-		event.add(logs);
-
-		logList.setItems(event);
+//		logList.setItems(event);
 
 	}
 
@@ -187,53 +190,78 @@ public class SampleController {
 
 	int count = 0;
 
-	@FXML
-	protected void faceRecognise() {
+	private void exportTxt(String mssv, String name, String className, String timeCheck) throws Exception {
 
+		File file = new File("D:\\test\\test.txt");
+		if (!file.exists()) {
+			FileWriter FW = new FileWriter(file, true);
+			BufferedWriter bw = new BufferedWriter(FW);
+			String header = "MSSV" + "\t";
+			header += "NAME" + "\t";
+			header += "CLASS" + "\t";
+			header += "THOI GIAN";
+			bw.write(header);
+			bw.write("\n");
+			bw.write(mssv);
+			bw.write("\t");
+			bw.write(name);
+			bw.write("\t");
+			bw.write(className);
+			bw.write("\t");
+			bw.write(timeCheck);
+			bw.write("\n");
+			bw.flush();
+		} else {
+			FileWriter FW = new FileWriter(file, true);
+			BufferedWriter bw = new BufferedWriter(FW);
+			bw.write(mssv);
+			bw.write("\t");
+			bw.write(name);
+			bw.write("\t");
+			bw.write(className);
+			bw.write("\t");
+			bw.write(timeCheck);
+			bw.write("\n");
+			bw.flush();
+		}
+
+	}
+
+	@FXML
+	protected void faceRecognise() throws Exception {
 		faceDetect.setIsRecFace(true);
 		// printOutput(faceDetect.getOutput());
-
 		recogniseBtn.setText("Get Face Data");
-
 		// Getting detected faces
 		user = faceDetect.getOutput();
 
 		if (count > 0) {
+			String logs = user.get(0) + ": " + user.get(1);
+			event.add(logs);
+			logList.setItems(event);
 
 			// Retrieved data will be shown in Fetched Data pane
-			String t = "********* Face Data: " + user.get(1) + " *********";
+			String intro = "********* Face Data: " + user.get(1) + " *********";
+			outEvent.add(intro);
 
-			outEvent.add(t);
-
-			String fc = "Code Student \t\t:\t" + user.get(0);
-
-			outEvent.add(fc);
+			String codeSt = "Code Student \t\t:\t" + user.get(0);
+			outEvent.add(codeSt);
 
 			output.setItems(outEvent);
-			String n1 = "Full Name\t\t:\t" + user.get(1);
-
-			outEvent.add(n1);
-
+			String fullName = "Full Name\t\t:\t" + user.get(1);
+			outEvent.add(fullName);
 			output.setItems(outEvent);
 
-			String n2 = "Class \t\t:\t" + user.get(2);
-
-			outEvent.add(n2);
-
+			String className = "Class \t\t:\t" + user.get(2);
+			outEvent.add(className);
 			output.setItems(outEvent);
-			
-			
-			String logs = java.time.LocalTime.now().toString();
 
-			outEvent.add(logs);
+			String timeCheck = java.time.LocalTime.now().toString();
+			exportTxt(user.get(0), user.get(1), user.get(2), timeCheck);
 
-			output.setItems(outEvent);
 		}
-
 		count++;
-
 		putOnLog("Face Recognition Activated !");
-
 		stopRecBtn.setDisable(false);
 
 	}
