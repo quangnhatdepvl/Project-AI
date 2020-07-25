@@ -61,10 +61,8 @@ class Database {
 			statement.setInt(1, 0);
 			statement.setInt(2, this.code);
 			statement.setString(3, this.fullName);
-
 			statement.setString(4, this.className);
 			statement.setInt(5, 2);
-
 			int rowsInserted = statement.executeUpdate();
 			if (rowsInserted > 0) {
 				System.out.println("A new face data was inserted successfully!");
