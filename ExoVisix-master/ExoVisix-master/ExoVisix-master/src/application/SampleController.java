@@ -201,45 +201,33 @@ public class SampleController {
 		if (count > 0) {
 
 			// Retrieved data will be shown in Fetched Data pane
-			String t = "********* Face Data: " + user.get(1) + " " + user.get(2) + " *********";
+			String t = "********* Face Data: " + user.get(1) + " *********";
 
 			outEvent.add(t);
 
-			String n1 = "First Name\t\t:\t" + user.get(1);
+			String fc = "Code Student \t\t:\t" + user.get(0);
+
+			outEvent.add(fc);
+
+			output.setItems(outEvent);
+			String n1 = "Full Name\t\t:\t" + user.get(1);
 
 			outEvent.add(n1);
 
 			output.setItems(outEvent);
 
-			String n2 = "Last Name\t\t:\t" + user.get(2);
+			String n2 = "Class \t\t:\t" + user.get(2);
 
 			outEvent.add(n2);
 
 			output.setItems(outEvent);
+			
+			
+			String logs = java.time.LocalTime.now().toString();
 
-			String fc = "Face Code\t\t:\t" + user.get(0);
-
-			outEvent.add(fc);
-
-			output.setItems(outEvent);
-
-			String r = "Reg no\t\t\t:\t" + user.get(3);
-
-			outEvent.add(r);
+			outEvent.add(logs);
 
 			output.setItems(outEvent);
-
-			String a = "Age \t\t\t\t:\t" + user.get(4);
-
-			outEvent.add(a);
-
-			output.setItems(outEvent);
-			String s = "Section\t\t\t:\t" + user.get(5);
-
-			outEvent.add(s);
-
-			output.setItems(outEvent);
-
 		}
 
 		count++;

@@ -12,16 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-// One man's constants is another mans variable.
-// Think twice but code once.
-// Happy Coding  :)
 
-/********************************************************
- * e x o V i s i x | The GhostEye * Anup Kumar Sarkar * me.anup.sarkar@gmail.com
- * * fb.com/i.am.anup.aronno * *
- *********************************************************/
-
-//Feel Free to communicate
 
 public class Main extends Application {
 	@Override

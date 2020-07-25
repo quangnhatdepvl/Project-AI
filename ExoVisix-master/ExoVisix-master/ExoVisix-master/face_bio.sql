@@ -11,7 +11,7 @@
  Target Server Version : 100413
  File Encoding         : 65001
 
- Date: 25/07/2020 15:16:01
+ Date: 25/07/2020 16:50:48
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,12 @@ CREATE TABLE `face_bio`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fkMonHoc_id`(`monHoc`) USING BTREE,
   CONSTRAINT `fkMonHoc_id` FOREIGN KEY (`monHoc`) REFERENCES `face_monhoc` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of face_bio
+-- ----------------------------
+INSERT INTO `face_bio` VALUES (1, 12, 'NHAT', 'b', 2);
 
 -- ----------------------------
 -- Table structure for face_monhoc

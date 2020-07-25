@@ -94,16 +94,14 @@ class Database {
 		return result;
 	}
 
+	
+
 	public ArrayList<String> getUser(int inCode) throws SQLException {
 
 		ArrayList<String> user = new ArrayList<String>();
 
 		try {
-
-			Database app = new Database();
-
 			String sql = "select * from face_bio where code=" + inCode + " limit 1";
-
 			Statement s = con.createStatement();
 
 			ResultSet rs = s.executeQuery(sql);
