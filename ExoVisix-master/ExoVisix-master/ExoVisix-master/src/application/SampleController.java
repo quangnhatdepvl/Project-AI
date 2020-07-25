@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.time.Instant;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -21,19 +22,24 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 public class SampleController {
 
-	//**********************************************************************************************
-	//Mention The file location path where the face will be saved & retrieved
-	
-	public String filePath="./faces";
-	
-	
-	//**********************************************************************************************
+	// **********************************************************************************************
+	// Mention The file location path where the face will be saved & retrieved
+
+	public String filePath = "./faces";
+
+	// **********************************************************************************************
 	@FXML
 	private Button startCam;
 	@FXML
@@ -82,21 +88,22 @@ public class SampleController {
 	public TilePane tile;
 	@FXML
 	public TextFlow ocr;
+	@FXML
+	public Label time;
 //**********************************************************************************************
-	FaceDetector faceDetect = new FaceDetector();	//Creating Face detector object									
-	Database database = new Database();		//Creating Database object
+	FaceDetector faceDetect = new FaceDetector(); // Creating Face detector object
+	Database database = new Database(); // Creating Database object
 
 	ArrayList<String> user = new ArrayList<String>();
 	ImageView imageView1;
-	
+
 	public static ObservableList<String> event = FXCollections.observableArrayList();
 	public static ObservableList<String> outEvent = FXCollections.observableArrayList();
 
 	public boolean enabled = false;
 	public boolean isDBready = false;
 
-	
-	//**********************************************************************************************
+	// **********************************************************************************************
 	public void putOnLog(String data) {
 
 		Instant now = Instant.now();
@@ -112,8 +119,25 @@ public class SampleController {
 	@FXML
 	protected void startCamera() throws SQLException {
 
-		//*******************************************************************************************
-		//initializing objects from start camera button event
+		new Thread(() -> {
+			javafx.application.Platform.runLater(new Runnable() {
+
+				@Override
+				public void run() {
+					Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {        
+				        LocalTime currentTime = LocalTime.now();
+				        time.setText(currentTime.getHour() + ":" + currentTime.getMinute() + ":" + currentTime.getSecond());
+				    }),
+				         new KeyFrame(Duration.seconds(1))
+				    );
+				    clock.setCycleCount(Animation.INDEFINITE);
+				    clock.play();
+				}
+			});
+
+		}).start();
+		// *******************************************************************************************
+		// initializing objects from start camera button event
 		faceDetect.init();
 
 		faceDetect.setFrame(frame);
@@ -129,8 +153,8 @@ public class SampleController {
 			putOnLog("Success: Database Connection Succesful ! ");
 		}
 
-		//*******************************************************************************************
-		//Activating other buttons
+		// *******************************************************************************************
+		// Activating other buttons
 		startCam.setVisible(false);
 
 		stopBtn.setVisible(true);
@@ -143,51 +167,49 @@ public class SampleController {
 		dataPane.setDisable(false);
 		// shapeBtn.setDisable(false);
 
-
 		if (stopRecBtn.isDisable()) {
 			stopRecBtn.setDisable(false);
 		}
-		//*******************************************************************************************
-		
-		
+		// *******************************************************************************************
+
 		tile.setPadding(new Insets(15, 15, 55, 15));
 		tile.setHgap(30);
-		
-		//**********************************************************************************************
-		//Picture Gallary
-		
+
+		// **********************************************************************************************
+		// Picture Gallary
+
 		String path = filePath;
 
 		File folder = new File(path);
 		File[] listOfFiles = folder.listFiles();
-		
-		//Image reader from the mentioned folder
+
+		// Image reader from the mentioned folder
 		for (final File file : listOfFiles) {
 
 			imageView1 = createImageView(file);
 			tile.getChildren().addAll(imageView1);
 		}
 		putOnLog(" Real Time WebCam Stream Started !");
-		
-		//**********************************************************************************************
+
+		// **********************************************************************************************
 	}
+
 	int count = 0;
 
 	@FXML
 	protected void faceRecognise() {
 
-		
 		faceDetect.setIsRecFace(true);
 		// printOutput(faceDetect.getOutput());
 
 		recogniseBtn.setText("Get Face Data");
 
-		//Getting detected faces
+		// Getting detected faces
 		user = faceDetect.getOutput();
 
 		if (count > 0) {
 
-			//Retrieved data will be shown in Fetched Data pane
+			// Retrieved data will be shown in Fetched Data pane
 			String t = "********* Face Data: " + user.get(1) + " " + user.get(2) + " *********";
 
 			outEvent.add(t);
@@ -264,7 +286,7 @@ public class SampleController {
 	@FXML
 	protected void saveFace() throws SQLException {
 
-		//Input Validation
+		// Input Validation
 		if (fname.getText().trim().isEmpty() || reg.getText().trim().isEmpty() || code.getText().trim().isEmpty()) {
 
 			new Thread(() -> {
@@ -282,7 +304,7 @@ public class SampleController {
 			}).start();
 
 		} else {
-			//Progressbar
+			// Progressbar
 			pb.setVisible(true);
 
 			savedLabel.setVisible(true);
@@ -298,42 +320,42 @@ public class SampleController {
 					faceDetect.setCode(Integer.parseInt(code.getText()));
 					faceDetect.setSec(sec.getText());
 					faceDetect.setReg(Integer.parseInt(reg.getText()));
-					
+
 					database.setFname(fname.getText());
 					database.setLname(lname.getText());
 					database.setAge(Integer.parseInt(age.getText()));
 					database.setCode(Integer.parseInt(code.getText()));
 					database.setSec(sec.getText());
 					database.setReg(Integer.parseInt(reg.getText()));
-					
-					if(database.getCode(Integer.parseInt(code.getText())) == 0) {
+
+					if (database.getCode(Integer.parseInt(code.getText())) == 0) {
 						database.insert();
 					}
-					
-					javafx.application.Platform.runLater(new Runnable(){
-						
+
+					javafx.application.Platform.runLater(new Runnable() {
+
 						@Override
-						 public void run() {
+						public void run() {
 							pb.setProgress(100);
-						 }
-						 });
+						}
+					});
 					savedLabel.setVisible(true);
 					Thread.sleep(2000);
-					
-					javafx.application.Platform.runLater(new Runnable(){
-						
+
+					javafx.application.Platform.runLater(new Runnable() {
+
 						@Override
-						 public void run() {
+						public void run() {
 							pb.setVisible(false);
-						 }
-						 });
-					javafx.application.Platform.runLater(new Runnable(){
-						
+						}
+					});
+					javafx.application.Platform.runLater(new Runnable() {
+
 						@Override
-						 public void run() {
-					 savedLabel.setVisible(false);
-						 }
-						 });
+						public void run() {
+							savedLabel.setVisible(false);
+						}
+					});
 
 				} catch (InterruptedException ex) {
 				}
@@ -361,14 +383,12 @@ public class SampleController {
 		recogniseBtn.setDisable(true);
 		saveBtn.setDisable(true);
 		dataPane.setDisable(true);
-		stopRecBtn.setDisable(true);		
+		stopRecBtn.setDisable(true);
 		database.db_close();
 		putOnLog("Database Connection Closed");
-		isDBready=false;
+		isDBready = false;
 	}
 
-
-	
 	private ImageView createImageView(final File imageFile) {
 
 		try {
