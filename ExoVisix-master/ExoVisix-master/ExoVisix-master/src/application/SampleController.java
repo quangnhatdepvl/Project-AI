@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.time.Instant;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -21,6 +22,12 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -76,6 +83,8 @@ public class SampleController {
 	public TilePane tile;
 	@FXML
 	public TextFlow ocr;
+	@FXML
+	public Label time;
 //**********************************************************************************************
 	FaceDetector faceDetect = new FaceDetector(); // Creating Face detector object
 	Database database = new Database(); // Creating Database object
@@ -104,6 +113,25 @@ public class SampleController {
 
 	@FXML
 	protected void startCamera() throws SQLException {
+
+
+		new Thread(() -> {
+			javafx.application.Platform.runLater(new Runnable() {
+
+				@Override
+				public void run() {
+					Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {        
+				        LocalTime currentTime = LocalTime.now();
+				        time.setText(currentTime.getHour() + ":" + currentTime.getMinute() + ":" + currentTime.getSecond());
+				    }),
+				         new KeyFrame(Duration.seconds(1))
+				    );
+				    clock.setCycleCount(Animation.INDEFINITE);
+				    clock.play();
+				}
+			});
+
+		}).start();
 
 		// *******************************************************************************************
 		// initializing objects from start camera button event
@@ -256,8 +284,12 @@ public class SampleController {
 	protected void saveFace() throws SQLException {
 
 		// Input Validation
+
 		if (fullName.getText().trim().isEmpty() || className.getText().trim().isEmpty()
 				|| code.getText().trim().isEmpty()) {
+
+		if (fname.getText().trim().isEmpty() || reg.getText().trim().isEmpty() || code.getText().trim().isEmpty()) {
+
 
 			new Thread(() -> {
 
@@ -287,9 +319,21 @@ public class SampleController {
 					faceDetect.setClassName(className.getText());
 					faceDetect.setCode(Integer.parseInt(code.getText()));
 
+
 					database.setFullName(fullName.getText());
 					database.setClassName(className.getText());
 					database.setCode(Integer.parseInt(code.getText()));
+
+					faceDetect.setSec(sec.getText());
+					faceDetect.setReg(Integer.parseInt(reg.getText()));
+
+					database.setFname(fname.getText());
+					database.setLname(lname.getText());
+					database.setAge(Integer.parseInt(age.getText()));
+					database.setCode(Integer.parseInt(code.getText()));
+					database.setSec(sec.getText());
+					database.setReg(Integer.parseInt(reg.getText()));
+
 
 					if (database.getCode(Integer.parseInt(code.getText())) == 0) {
 						database.insert();
