@@ -23,12 +23,8 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 import org.bytedeco.javacpp.Loader;
 import org.bytedeco.javacpp.opencv_core.CvMemStorage;
@@ -70,13 +66,7 @@ public class FaceDetector implements Runnable {
 
 	public boolean saveFace = false;
 	public boolean isRecFace = false;
-	public boolean isOutput = false;
-	public boolean isOcrMode = false;
-	public boolean isMotion = false;
-	public boolean isEyeDetection = false;
-	public boolean isSmile = false;
-	public boolean isUpperBody = false;
-	public boolean isFullBody = false;
+
 	private boolean stop = false;
 
 	private CvHaarClassifierCascade classifier = null;
@@ -169,19 +159,6 @@ public class FaceDetector implements Runnable {
 
 					CvPoint org = null;
 					if (grabbedImage != null) {
-
-						if (isOcrMode) {
-							try {
-
-								OutputStream os = new FileOutputStream("captures.png");
-								ImageIO.write(image, "PNG", os);
-							} catch (IOException e) {
-
-								e.printStackTrace();
-							}
-						}
-
-						isOcrMode = false;
 
 						if (faces.total() == 0) {
 							faces = cvHaarDetectObjects(smallImage, classifierSideFace, storage, 1.1, 3,
@@ -362,43 +339,6 @@ public class FaceDetector implements Runnable {
 
 	public void setFrames2(ImageView frames2) {
 		this.frames2 = frames2;
-	}
-
-	public void setSmile(boolean isSmile) {
-		this.isSmile = isSmile;
-	}
-
-	public void setUpperBody(boolean isUpperBody) {
-		this.isUpperBody = isUpperBody;
-	}
-
-	public void setFullBody(boolean isFullBody) {
-		this.isFullBody = isFullBody;
-	}
-
-	public boolean isEyeDetection() {
-
-		return isEyeDetection;
-	}
-
-	public void setEyeDetection(boolean isEyeDetection) {
-		this.isEyeDetection = isEyeDetection;
-	}
-
-	public boolean getOcrMode() {
-		return isOcrMode;
-	}
-
-	public void setOcrMode(boolean isOcrMode) {
-		this.isOcrMode = isOcrMode;
-	}
-
-	public boolean isMotion() {
-		return isMotion;
-	}
-
-	public void setMotion(boolean isMotion) {
-		this.isMotion = isMotion;
 	}
 
 	public ArrayList<String> getOutput() {
