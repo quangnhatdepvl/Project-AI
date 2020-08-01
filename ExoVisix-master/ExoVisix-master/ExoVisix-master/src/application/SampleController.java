@@ -238,7 +238,7 @@ public class SampleController {
 	protected void faceRecognise() throws Exception {
 		faceDetect.setIsRecFace(true);
 		// printOutput(faceDetect.getOutput());
-		recogniseBtn.setText("Get Face Data");
+	
 		// Getting detected faces
 		user = faceDetect.getOutput();
 
@@ -271,7 +271,7 @@ public class SampleController {
 
 		}
 		count++;
-		putOnLog("Face Recognition Activated !");
+		
 		stopRecBtn.setDisable(false);
 
 	}
@@ -284,21 +284,12 @@ public class SampleController {
 
 		this.user.clear();
 
-		recogniseBtn.setText("Recognise Face");
-
 		stopRecBtn.setDisable(true);
 
-		putOnLog("Face Recognition Deactivated !");
+	
 
 	}
 
-	@FXML
-	protected void startMotion() {
-
-		faceDetect.setMotion(true);
-		putOnLog("motion Detector Activated !");
-
-	}
 
 	@FXML
 	protected void saveFace() throws SQLException {

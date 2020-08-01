@@ -22,9 +22,9 @@
 								<Rectangle2D width="700.0" />
 							</viewport>
 						</ImageView>
-						<Button fx:id="startCam" layoutX="3.0" layoutY="424.0" mnemonicParsing="false" onAction="#startCamera" prefHeight="55.0" prefWidth="102.0" styleClass="aaa" stylesheets="@application.css" />
+						<Button fx:id="startCam"  layoutX="3.0" layoutY="424.0" mnemonicParsing="false" onAction="#startCamera" prefHeight="55.0" prefWidth="102.0" styleClass="aaa" stylesheets="@application.css" />
 						<Button id="savef" fx:id="saveBtn" disable="true" layoutX="109.0" layoutY="425.0" mnemonicParsing="false" onAction="#saveFace" prefHeight="55.0" prefWidth="91.0" stylesheets="@application.css" />
-						<Button fx:id="recogniseBtn" disable="true" layoutX="374.0" layoutY="423.0" mnemonicParsing="false" onAction="#faceRecognise" prefHeight="55.0" prefWidth="158.0" style="-fx-background-color: gold;" styleClass="recog" stylesheets="@application.css">
+						<Button fx:id="recogniseBtn" disable="true" layoutX="374.0" layoutY="423.0" mnemonicParsing="false" onAction="#faceRecognise" prefHeight="55.0" prefWidth="158.0"  styleClass="recog" stylesheets="@application.css">
 							<font>
 								<Font size="10.0" />
 							</font>
@@ -45,7 +45,7 @@
 							</textFill>
 						</Label>
 						<ProgressIndicator fx:id="pb" layoutX="360.0" layoutY="156.0" progress="0.0" visible="false" />
-						<Label fx:id="warning" layoutX="141.0" layoutY="365.0" prefHeight="52.0" prefWidth="447.0" style="-fx-background-color: #e53b24; -fx-background-radius: 14px;" text="  Warning: Name or Class or Code Field Cannot Be empty !" textFill="WHITE" underline="true" visible="false">
+						<Label fx:id="warning" layoutX="141.0" layoutY="365.0" prefHeight="52.0" prefWidth="447.0" style="-fx-background-color: #e53b24; -fx-background-radius: 14px;" text="  Sinh viên phải nhập đầy đủ thông tin vào Form !!!" textFill="WHITE" underline="true" visible="false">
 							<font>
 								<Font name="Estrangelo Edessa" size="19.0" />
 							</font>
@@ -77,7 +77,7 @@
 		</TitledPane>
 	</center>
 	<left>
-		<TitledPane fx:id="dataPane" disable="true" prefHeight="528.0" prefWidth="302.0" text="Information Student" BorderPane.alignment="CENTER">
+		<TitledPane fx:id="dataPane" disable="true" prefHeight="528.0" prefWidth="302.0" text="THÔNG TIN SINH VIÊN" BorderPane.alignment="CENTER">
 			<content>
 				<SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="276.0" prefWidth="300.0">
 					<items>
@@ -92,9 +92,9 @@
 						</AnchorPane>
 						<AnchorPane fx:id="pdPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
 							<children>
-								<Label fx:id="title" layoutX="31.0" layoutY="-1.0" text="Person  Data:">
+								<Label fx:id="title" layoutX="31.0" layoutY="-1.0" text="THÔNG TIN SINH VIÊN">
 									<font>
-										<Font name="Vermin Vibes 4 Helium" size="30.0" />
+										<Font size="24.0" />
 									</font>
 									<textFill>
 										<LinearGradient cycleMethod="REPEAT" endX="1.0" endY="1.0">
@@ -105,24 +105,24 @@
 										</LinearGradient>
 									</textFill>
 								</Label>
-								<Label layoutX="29.0" layoutY="70.0" text="FullName">
+								<Label layoutX="12.0" layoutY="123.0" text="Họ và tên">
 									<font>
 										<Font size="20.0" />
 									</font>
 								</Label>
-								<TextField fx:id="fullName" layoutX="98.0" layoutY="73.0" prefHeight="25.0" prefWidth="181.0" promptText="Enter First Name" />
-								<TextField fx:id="code" layoutX="97.0" layoutY="40.0" prefHeight="25.0" prefWidth="181.0" promptText="Unique Face code" />
-								<Label layoutX="28.0" layoutY="37.0" text="Code:">
+								<TextField fx:id="fullName" layoutX="113.0" layoutY="125.0" prefHeight="25.0" prefWidth="181.0" promptText="Nhập họ và tên" />
+								<TextField fx:id="code" layoutX="113.0" layoutY="74.0" prefHeight="25.0" prefWidth="181.0" promptText="Nhập mã sinh viên" />
+								<Label layoutX="17.0" layoutY="71.0" text="Mã SV">
 									<font>
 										<Font size="20.0" />
 									</font>
 								</Label>
-								<Label layoutX="24.0" layoutY="102.0" text="Class">
+								<Label layoutX="14.0" layoutY="190.0" text="Mã lớp">
 									<font>
 										<Font size="20.0" />
 									</font>
 								</Label>
-								<TextField fx:id="className" layoutX="97.0" layoutY="105.0" prefHeight="25.0" prefWidth="181.0" promptText="Enter Last name" />
+								<TextField fx:id="className" layoutX="113.0" layoutY="193.0" prefHeight="25.0" prefWidth="181.0" promptText="Nhập mã lớp" />
 								<Separator layoutX="34.0" layoutY="33.0" prefHeight="6.0" prefWidth="239.0" />
 								<ImageView fx:id="motionView" fitHeight="211.0" fitWidth="298.0" layoutX="2.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" visible="false" />
 							</children>
@@ -133,7 +133,7 @@
 		</TitledPane>
 	</left>
 	<right>
-		<TitledPane animated="false" prefHeight="524.0" prefWidth="266.0" text="Checked" BorderPane.alignment="CENTER">
+		<TitledPane animated="false" prefHeight="524.0" prefWidth="266.0" text="BẢNG THÔNG TIN" BorderPane.alignment="CENTER">
 			<content>
 				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="338.0">
 					<children>
@@ -143,7 +143,7 @@
 									<content>
 										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="496.0" prefWidth="310.0">
 											<children>
-												<Label layoutX="68.0" layoutY="7.0" text="NAME CHECKED">
+												<Label layoutX="68.0" layoutY="7.0" text="ĐIỂM DANH">
 													<font>
 														<Font name="Vermin Vibes 4 Helium" size="22.0" />
 													</font>
@@ -157,12 +157,11 @@
 													</textFill>
 												</Label>
 												<Separator layoutX="77.0" layoutY="37.0" prefHeight="5.0" prefWidth="123.0" />
-												<ListView fx:id="logList" editable="true" layoutX="4.0" layoutY="37.0" prefHeight="203.0" prefWidth="256.0" style="-fx-padding: 10;">
+												<ListView fx:id="logList" editable="true" layoutX="4.0" layoutY="37.0" prefHeight="433.0" prefWidth="256.0" style="-fx-padding: 10;">
 													<effect>
 														<Glow />
 													</effect>
 												</ListView>
-												<Separator layoutX="77.0" layoutY="272.0" prefHeight="5.0" prefWidth="123.0" />
 											</children>
 										</AnchorPane>
 									</content>
@@ -177,7 +176,7 @@
 	<bottom>
 		<Pane prefHeight="195.0" prefWidth="1354.0" BorderPane.alignment="CENTER">
 			<children>
-				<TitledPane animated="false" prefHeight="206.0" prefWidth="1350.0" text="Face Database">
+				<TitledPane animated="false" prefHeight="206.0" prefWidth="1350.0" text="Dữ liệu khuôn mặt">
 					<content>
 						<ScrollPane prefViewportHeight="180.0" prefViewportWidth="1348.0">
 							<content>
@@ -194,6 +193,6 @@
 		</Pane>
 	</bottom>
    <top>
-      <Label fx:id="time" text="Label" BorderPane.alignment="CENTER" />
+      <Label fx:id="time" text="ĐỒNG HỒ" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>
