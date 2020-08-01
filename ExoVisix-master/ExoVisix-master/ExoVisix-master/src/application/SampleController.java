@@ -259,7 +259,7 @@ public class SampleController {
 			outEvent.add(fullName);
 			output.setItems(outEvent);
 
-			String className = "Mã lớp:  \t\t\t\t" + user.get(2);
+			String className = "Mã lớp:  \t\t:\t\t" + user.get(2);
 			outEvent.add(className);
 			output.setItems(outEvent);
 
