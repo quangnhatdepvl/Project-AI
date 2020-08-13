@@ -1,11 +1,15 @@
 package application;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.sql.SQLException;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javafx.animation.Animation;
@@ -97,13 +101,7 @@ public class SampleController {
 	// **********************************************************************************************
 	public void putOnLog(String data) {
 
-		Instant now = Instant.now();
-
-		String logs = now.toString() + ":\n" + data;
-
-		event.add(logs);
-
-		logList.setItems(event);
+	
 
 	}
 
@@ -186,66 +184,91 @@ public class SampleController {
 	}
 
 	int count = 0;
+	private void exportTxt(String mssv, String name, String className, String timeCheck, String dates)
+			throws Exception {
+
+		File file = new File("D:\\test\\test.txt");
+		if (!file.exists()) {
+			FileWriter FW = new FileWriter(file, true);
+			BufferedWriter bw = new BufferedWriter(FW);
+			String header = "MSSV" + "\t\t";
+			header += "NAME" + "\t\t";
+			header += "CLASS" + "\t";
+			header += "THOI GIAN" + "\t";
+			header += "NGAY THANG" ;
+			
+			bw.write(header);
+			bw.write("\n");
+			bw.write(mssv);
+			bw.write("\t");
+			bw.write(name);
+			bw.write("\t");
+			bw.write(className);
+			bw.write("\t");
+			bw.write(timeCheck);
+			bw.write("\t");
+			bw.write(dates);
+			bw.write("\n");
+			bw.flush();
+		} else {
+			FileWriter FW = new FileWriter(file, true);
+			BufferedWriter bw = new BufferedWriter(FW);
+			bw.write(mssv);
+			bw.write("\t");
+			bw.write(name);
+			bw.write("\t");
+			bw.write(className);
+			bw.write("\t");
+			bw.write(timeCheck);
+			bw.write("\t");
+			bw.write(dates);
+			bw.write("\n");
+			bw.flush();
+		}
+
+	}
+
+
 
 	@FXML
-	protected void faceRecognise() {
+	protected void faceRecognise() throws Exception {
 
 		faceDetect.setIsRecFace(true);
 		// printOutput(faceDetect.getOutput());
-
-		recogniseBtn.setText("Get Face Data");
-
+	
 		// Getting detected faces
 		user = faceDetect.getOutput();
 
 		if (count > 0) {
+			String logs = user.get(0) + ": " + user.get(1);
+			event.add(logs);
+			logList.setItems(event);
 
 			// Retrieved data will be shown in Fetched Data pane
-			String t = "********* Face Data: " + user.get(1) + " " + user.get(2) + " *********";
+			String intro = "********* Thông tin : " + user.get(1) + " *********";
+			outEvent.add(intro);
 
-			outEvent.add(t);
-
-			String n1 = "First Name\t\t:\t" + user.get(1);
-
-			outEvent.add(n1);
+			String codeSt = "Mã số sinh viên: \t\t:\t" + user.get(0);
+			outEvent.add(codeSt);
 
 			output.setItems(outEvent);
-
-			String n2 = "Last Name\t\t:\t" + user.get(2);
-
-			outEvent.add(n2);
-
+			String fullName = "Họ và tên: \t\t:\t" + user.get(1);
+			outEvent.add(fullName);
 			output.setItems(outEvent);
 
-			String fc = "Face Code\t\t:\t" + user.get(0);
-
-			outEvent.add(fc);
-
+			String className = "Mã lớp:  \t\t:\t\t" + user.get(2);
+			outEvent.add(className);
 			output.setItems(outEvent);
 
-			String r = "Reg no\t\t\t:\t" + user.get(3);
-
-			outEvent.add(r);
-
-			output.setItems(outEvent);
-
-			String a = "Age \t\t\t\t:\t" + user.get(4);
-
-			outEvent.add(a);
-
-			output.setItems(outEvent);
-			String s = "Section\t\t\t:\t" + user.get(5);
-
-			outEvent.add(s);
-
-			output.setItems(outEvent);
+			String timeCheck = java.time.LocalTime.now().toString();
+			LocalDate date = LocalDate.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	     	String dates = date.format(formatter);
+			exportTxt(user.get(0), user.get(1), user.get(2), timeCheck, dates);
 
 		}
-
 		count++;
-
-		putOnLog("Face Recognition Activated !");
-
+		
 		stopRecBtn.setDisable(false);
 
 	}
