@@ -109,29 +109,11 @@ class Database {
 			ResultSet rs = s.executeQuery(sql);
 
 			while (rs.next()) {
-
-				/*
-				 * app.setCode(rs.getInt(2)); app.setFname(rs.getString(3));
-				 * app.setLname(rs.getString(4)); app.setReg(rs.getInt(5));
-				 * app.setAge(rs.getInt(6)); app.setSec(rs.getString(7));
-				 */
-
 				user.add(0, Integer.toString(rs.getInt(2)));
 				user.add(1, rs.getString(3));
 				user.add(2, rs.getString(4));
 				user.add(3, Integer.toString(rs.getInt(5)));
 
-				/*
-				 * System.out.println(app.getCode()); System.out.println(app.getFname());
-				 * System.out.println(app.getLname()); System.out.println(app.getReg());
-				 * System.out.println(app.getAge()); System.out.println(app.getSec());
-				 */
-
-				// nString="Name:" + rs.getString(3)+" "+rs.getString(4) +
-				// "\nReg:" + app.getReg() +"\nAge:"+app.getAge() +"\nSection:"
-				// +app.getSec() ;
-
-				// System.out.println(nString);
 			}
 
 			con.close(); // closing connection
