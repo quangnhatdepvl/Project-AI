@@ -32,7 +32,7 @@ public class Main extends Application {
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.getIcons().add(new Image("logo.png"));
-			primaryStage.setTitle("e x o V i s i x | Smart & Intelligent Computer Vision Solution ");
+			primaryStage.setTitle("Project AI");
 
 			primaryStage.setScene(scene);
 
