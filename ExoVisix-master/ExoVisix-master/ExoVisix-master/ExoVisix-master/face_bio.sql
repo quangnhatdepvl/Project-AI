@@ -11,7 +11,7 @@
  Target Server Version : 100413
  File Encoding         : 65001
 
- Date: 25/07/2020 15:16:01
+ Date: 08/09/2020 13:24:29
 */
 
 SET NAMES utf8mb4;
@@ -24,13 +24,19 @@ DROP TABLE IF EXISTS `face_bio`;
 CREATE TABLE `face_bio`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` int(10) NOT NULL,
-  `fullName` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `className` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `fullName` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `className` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `monHoc` int(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fkMonHoc_id`(`monHoc`) USING BTREE,
   CONSTRAINT `fkMonHoc_id` FOREIGN KEY (`monHoc`) REFERENCES `face_monhoc` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of face_bio
+-- ----------------------------
+INSERT INTO `face_bio` VALUES (1, 123, 'nhat', 'dao', 2);
+INSERT INTO `face_bio` VALUES (2, 98, 'klll', 'nmbnm', 2);
 
 -- ----------------------------
 -- Table structure for face_monhoc
